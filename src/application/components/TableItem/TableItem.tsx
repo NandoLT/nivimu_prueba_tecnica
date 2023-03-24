@@ -17,7 +17,6 @@ const TableItem = ({ dataSource, columns, size="middle", setFirstUser }: DataTyp
   const changeFirstUser = (parameters:any) => {
     setFirstUser(parameters.currentDataSource[0])
   }
-
   
   return (
     <Table 

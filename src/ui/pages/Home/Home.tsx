@@ -34,7 +34,7 @@ const Home = () => {
     }
   };
 
-  const {data, isLoading, error, refetch, isFetched} = useQuery("getUsers", getUsers);
+  const { data, isLoading, error, refetch, isFetched } = useQuery("getUsers", getUsers);
   const [firstUser, setFirstUser] = useState<User>(initialState);
 
   if(isLoading) {
@@ -50,19 +50,24 @@ const Home = () => {
   }
 
   useEffect(() => {
-    setFirstUser(data[0])
+    data?.length > 0 && setFirstUser(data[0])
   },[isFetched])
   
-  return (
-    <div className="data-container">
-      <div className="table-container">
-        <TableItem dataSource={data} columns={usersColumns} size="middle" setFirstUser={setFirstUser} />
+
+  if(isFetched) {
+    return (
+      <div className="data-container">
+        <div className="table-container">
+          <TableItem dataSource={data} columns={usersColumns(data)} size="middle" setFirstUser={setFirstUser} />
+        </div>
+        <div className="cardItem-container">
+          <CardItem firstUser={firstUser} />
+        </div>
       </div>
-      <div className="cardItem-container">
-        <CardItem firstUser={firstUser} />
-      </div>
-    </div>
-  )
+    )
+  }
+
+  return <Spin size="large"/>;
 }
 
 export default Home;
