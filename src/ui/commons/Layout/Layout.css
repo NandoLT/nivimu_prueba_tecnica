@@ -1,0 +1,17 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.main {
+  border-left-width: 1px;
+  border-right-width: 1px;
+
+}
+
+.layoutContent {
+  width: 80%;
+  margin: auto;
+  margin-top: 30px;
+}
